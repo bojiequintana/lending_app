@@ -1,15 +1,17 @@
-import { IBaseOperations } from "./types/IBaseOperations";
-import { IDefaultFields } from "./types/IDefaultFields";
-import { ICreate, IFilter } from "./types/OperationParams";
-import { TCollectionName } from "./types/TCollectionNames";
+import { IBaseOperations } from "../types/IBaseOperations";
+import { IDefaultFields } from "../types/IDefaultFields";
+import { ICreate, IFilter } from "../types/OperationParams";
+import { TCollectionName } from "../types/TCollectionNames";
 
 export const supabaseClient = async <T extends IDefaultFields>(
   collectionName: TCollectionName
 ): Promise<IBaseOperations<T>> => {
   const read = async (): Promise<T[]> => {
     try {
-      console.log("collectionName", collectionName);
-      return [{}] as T[];
+      const result = await fetch(
+        `https://jsonplaceholder.typicode.com/${collectionName}`
+      );
+      return result.json();
     } catch (error) {
       console.error("Error fetching Firestore data:", error);
       throw new Error("Error fetching Firestore data");

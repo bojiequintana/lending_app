@@ -8,6 +8,7 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
+import Authentication from "./components/authentication";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -41,12 +42,12 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
 }
 
 export default function App() {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   return isAuthenticated ? (
     <Outlet />
   ) : (
     <div className="flex h-screen items-center justify-center">
-      Not authenticated
+      <Authentication />
     </div>
   );
 }

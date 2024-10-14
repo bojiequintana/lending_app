@@ -7,8 +7,8 @@ export const getUsers = async () => {
   return (await users).read();
 };
 
-export const create = async () => {
-  return (await users).create<UserDTO>({ payload: { title: "string" } });
+export const create = async (payload: UserDTO) => {
+  return (await users).create<UserDTO>({ payload });
 };
 
 export const getUsersById = async (id: string) => {

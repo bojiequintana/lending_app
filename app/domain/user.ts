@@ -1,11 +1,17 @@
 import { IDefaultFields } from "~/datasource/types/IDefaultFields";
 
 export interface UserEntity extends IDefaultFields {
-  userId: number;
-  title: string;
-  completed: boolean;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  website: string;
 }
 
 export interface UserDTO {
-  title: string;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  website: string;
 }
