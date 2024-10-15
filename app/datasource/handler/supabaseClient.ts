@@ -3,6 +3,11 @@ import { IDefaultFields } from "../types/IDefaultFields";
 import { ICreate, IFilter } from "../types/OperationParams";
 import { TCollectionName } from "../types/TCollectionNames";
 
+import { createClient } from "@supabase/supabase-js";
+const supabaseUrl = process.env.SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export const supabaseClient = async <T extends IDefaultFields>(
   collectionName: TCollectionName
 ): Promise<IBaseOperations<T>> => {

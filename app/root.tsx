@@ -2,13 +2,16 @@ import {
   Links,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import type { ActionFunctionArgs, LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 import Authentication from "./components/authentication";
+import PrivateLayout from "./components/PrivateLayout";
+import { supabaseAuth } from "./auth/supabaseAuth";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,17 +26,34 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export async function action({ request }: ActionFunctionArgs) {
+  const body = await request.formData();
+  const email = body.get("email") as string;
+  const password = body.get("password") as string;
+  supabaseAuth().signIn({ email, password });
+  return redirect(`/`);
+}
+
 export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const isAuthenticated = false;
+  const renderElement = isAuthenticated ? (
+    <PrivateLayout>{children}</PrivateLayout>
+  ) : (
+    <div className="w-screen h-dvh flex justify-center items-center">
+      <Authentication />
+    </div>
+  );
+
   return (
-    <html lang="en">
+    <html lang="en" data-theme="pastel">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="prose">
+        {renderElement}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,12 +62,5 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
 }
 
 export default function App() {
-  const isAuthenticated = false;
-  return isAuthenticated ? (
-    <Outlet />
-  ) : (
-    <div className="flex h-screen items-center justify-center">
-      <Authentication />
-    </div>
-  );
+  return <Outlet />;
 }

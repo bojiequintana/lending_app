@@ -1,4 +1,5 @@
 import { json, useLoaderData } from "@remix-run/react";
+import Table from "~/components/ui/table";
 import { getUsers } from "~/data-access/userRepository";
 import { UserEntity } from "~/domain/user";
 
@@ -10,9 +11,7 @@ function UsersPage() {
   const users = useLoaderData<UserEntity[]>();
   return (
     <div className="flex flex-col">
-      {users.map((user) => (
-        <div key={user.id}>{user.name}</div>
-      ))}
+      <Table />
     </div>
   );
 }
