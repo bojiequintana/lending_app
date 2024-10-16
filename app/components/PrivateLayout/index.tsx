@@ -9,7 +9,7 @@ const PrivateLayout = ({
       <Sidenav />
       <div className="flex-1 flex flex-col">
         <Appbar />
-        <div className="p-10">{children}</div>
+        <div className="p-10 bg-base-200 h-dvh">{children}</div>
       </div>
     </div>
   );

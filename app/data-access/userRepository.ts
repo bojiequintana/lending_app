@@ -7,7 +7,7 @@ export const getUsers = async () => {
   return (await users).read();
 };
 
-export const create = async (payload: UserDTO) => {
+export const createUsers = async (payload: UserDTO) => {
   return (await users).create<UserDTO>({ payload });
 };
 

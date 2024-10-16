@@ -5,18 +5,19 @@ const supabaseUrl = process.env.SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_KEY!;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-export const supabaseAuth = (): IAuthBaseOperations => {
-  const signUp = (params: IAuth) => {
-    supabase.auth.signUp({
+export const supabaseAuth = <T>(): IAuthBaseOperations<T> => {
+  const signUp = async (params: IAuth): Promise<T> => {
+    return (await supabase.auth.signUp({
       email: params.email,
       password: params.password,
-    });
+    })) as T;
   };
-  const signIn = (params: IAuth) => {
-    supabase.auth.signUp({
+
+  const signIn = async (params: IAuth): Promise<T> => {
+    return (await supabase.auth.signInWithPassword({
       email: params.email,
       password: params.password,
-    });
+    })) as T;
   };
   const signOut = () => {
     supabase.auth.signOut();

@@ -1,4 +1,4 @@
-import { useLocation } from "@remix-run/react";
+import { Link, useLocation } from "@remix-run/react";
 
 const Sidenav = () => {
   const { pathname } = useLocation();
@@ -12,12 +12,10 @@ const Sidenav = () => {
           <span className="text-xl">Lending App</span>
         </a>
       </li>
-      <li className="">
-        <a
-          href="#item1"
-          className={`no-underline flex gap-5 ${
-            pathname === "/dashboard" && "active"
-          }`}
+      <li>
+        <Link
+          to="/"
+          className={`no-underline flex gap-5 ${pathname === "/" && "active"}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,11 +32,11 @@ const Sidenav = () => {
             />
           </svg>
           <span>Dashboard</span>
-        </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="#item2"
+        <Link
+          to="/users-page"
           className={`no-underline flex gap-5 ${
             pathname === "/users-page" && "active"
           }`}
@@ -58,11 +56,11 @@ const Sidenav = () => {
             />
           </svg>
           <span>Users</span>
-        </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="#item3"
+        <Link
+          to="/credits"
           className={`no-underline flex gap-5 ${
             pathname === "/credits" && "active"
           }`}
@@ -82,7 +80,7 @@ const Sidenav = () => {
             />
           </svg>
           <span>Credits</span>
-        </a>
+        </Link>
       </li>
     </ul>
   );

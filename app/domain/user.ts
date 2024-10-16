@@ -1,4 +1,4 @@
-import { IDefaultFields } from "~/datasource/types/IDefaultFields";
+import { IDefaultFields } from "./base/IDefaultFields";
 
 export interface UserEntity extends IDefaultFields {
   name: string;
