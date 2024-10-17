@@ -1,4 +1,4 @@
-import { UserDTO, UserEntity } from "~/domain/user";
+import { UserDTO, UserEntity } from "~/entities/UserEntity";
 import dataSource from "~/datasource";
 
 const users = dataSource<UserEntity>("users");

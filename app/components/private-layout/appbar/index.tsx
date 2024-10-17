@@ -1,3 +1,5 @@
+import LogoutButton from "~/components/logout-button";
+
 const Appbar = () => {
   return (
     <div className="navbar bg-base-100 border-b">
@@ -22,6 +24,7 @@ const Appbar = () => {
           </div>
           <ul
             tabIndex={0}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
             role="button"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
@@ -35,7 +38,7 @@ const Appbar = () => {
               <a href="#item2">Settings</a>
             </li>
             <li>
-              <a href="#item3">Logout</a>
+              <LogoutButton />
             </li>
           </ul>
         </div>

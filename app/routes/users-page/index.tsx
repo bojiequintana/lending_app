@@ -3,7 +3,7 @@ import Button from "~/components/ui/Button";
 import Input from "~/components/ui/Input";
 import Table from "~/components/ui/table";
 import { getUsers } from "~/data-access/userRepository";
-import { UserEntity } from "~/domain/user";
+import { UserEntity } from "~/entities/UserEntity";
 
 export async function loader() {
   return json(await getUsers());

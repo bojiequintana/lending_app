@@ -1,5 +1,4 @@
-import { IDefaultFields } from "./base/IDefaultFields";
-
+import { IDefaultFields } from "./_base/IDefaultFields";
 export interface UserEntity extends IDefaultFields {
   name: string;
   username: string;

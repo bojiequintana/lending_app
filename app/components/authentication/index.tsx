@@ -9,6 +9,7 @@ const Authentication = () => {
       method="post"
       className="flex flex-col gap-10 max-w-md w-full bg-base-200 p-10 rounded-box items-center shadow-md"
     >
+      <input type="hidden" name="actionType" value="login" />
       <h1>Lending App</h1>
       <Input placeholder="Email" name="email" />
       <Input placeholder="Password" name="password" type="password" />
