@@ -24,7 +24,7 @@ interface IProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputVariants> {
   label?: string;
-  errorMessage?: string;
+  errormessage?: string;
 }
 const Input = React.forwardRef<HTMLInputElement, IProps>(
   ({ className, variant, shape, label, onChange, ...props }, ref) => {
@@ -37,9 +37,9 @@ const Input = React.forwardRef<HTMLInputElement, IProps>(
           ref={ref}
           {...props}
         />
-        {props.errorMessage && (
+        {props.errormessage && (
           <span className="absolute -bottom-5 left-2 text-xs text-error">
-            {props.errorMessage}
+            {props.errormessage}
           </span>
         )}
       </div>

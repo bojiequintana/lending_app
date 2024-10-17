@@ -1,59 +1,20 @@
-import { Form } from "@remix-run/react";
-import Button from "../ui/Button";
-import Input from "../ui/Input";
-import google from "public/google.png";
-import useActionState from "~/hooks/useActionState";
-import { displayErrorMessagesByErrorState } from "~/utils/displayErrorMessagesByErrorState";
+import { useLoaderData, useLocation } from "@remix-run/react";
+import { loader } from "~/root";
+import LoginForm from "./_LoginForm";
+import PageNotFound from "../page-not-found";
 
-const Authentication = () => {
-  const {
-    actionData,
-    isLoading,
-    setIsLoading,
-    fieldErrorsState,
-    turnOffErrorIndicator,
-  } = useActionState();
-
-  const fields = displayErrorMessagesByErrorState({
-    fieldErrors: actionData?.fieldErrors,
-    fieldErrorsState,
-  });
-
-  return (
-    <Form
-      method="post"
-      className="flex flex-col gap-10 max-w-md w-full bg-base-200 p-10 rounded-box items-center shadow-md"
-    >
-      {/** input hidden: important for form identity*/}
-      <input type="hidden" name="actionType" value="login" />{" "}
-      {isLoading && <div>loading....</div>}
-      <h1>Lending App</h1>
-      <Input
-        placeholder="Email"
-        name="email"
-        variant={fields.email ? "error" : "default"}
-        errorMessage={fields.email}
-        onChange={() => turnOffErrorIndicator("email")}
-      />
-      <Input
-        placeholder="Password"
-        name="password"
-        type="password"
-        variant={fields.password ? "error" : "default"}
-        errorMessage={fields.password}
-        onChange={() => turnOffErrorIndicator("password")}
-      />
-      <div className="flex gap-3">
-        <Button
-          onClick={() => setIsLoading(true)}
-          type="submit"
-          label="Login"
-        />
-        <Button type="button" variant="base100" className="relative px-8">
-          <img src={google} alt="googleLogo" className="w-6 absolute" />
-        </Button>
-      </div>
-    </Form>
+interface IProps {
+  children: React.ReactNode;
+}
+const Authentication = (props: IProps) => {
+  const { pathname } = useLocation();
+  const data = useLoaderData<typeof loader>();
+  return data?.isAuthenticated ? (
+    props.children
+  ) : (
+    <div className="w-screen h-dvh flex justify-center items-center">
+      {pathname === "/" ? <LoginForm /> : <PageNotFound />}
+    </div>
   );
 };
 

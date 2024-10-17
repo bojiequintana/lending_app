@@ -3,7 +3,7 @@ import { Link, useLocation } from "@remix-run/react";
 const Sidenav = () => {
   const { pathname } = useLocation();
   return (
-    <ul className="menu bg-primary h-dvh mt-0 w-60 border-r">
+    <ul className="menu bg-primary/50 h-dvh mt-0 w-60 border-r">
       <li>
         <a
           href="#item1"
@@ -15,7 +15,9 @@ const Sidenav = () => {
       <li>
         <Link
           to="/"
-          className={`no-underline flex gap-5 ${pathname === "/" && "active"}`}
+          className={`no-underline flex gap-5 ${
+            pathname === "/" && "bg-primary"
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +40,7 @@ const Sidenav = () => {
         <Link
           to="/users-page"
           className={`no-underline flex gap-5 ${
-            pathname === "/users-page" && "active"
+            pathname === "/users-page" && "bg-primary"
           }`}
         >
           <svg
@@ -60,9 +62,9 @@ const Sidenav = () => {
       </li>
       <li>
         <Link
-          to="/credits"
+          to="/creditsss"
           className={`no-underline flex gap-5 ${
-            pathname === "/credits" && "active"
+            pathname === "/credits" && "bg-primary"
           }`}
         >
           <svg

@@ -3,10 +3,9 @@ import {
   Links,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
-  useLocation,
 } from "@remix-run/react";
 import type {
   ActionFunctionArgs,
@@ -52,16 +51,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const { pathname } = useLocation();
-  const data = useLoaderData<typeof loader>();
-  const renderElement = data?.isAuthenticated ? (
-    <PrivateLayout>{children}</PrivateLayout>
-  ) : (
-    <div className="w-screen h-dvh flex justify-center items-center">
-      {pathname === "/" ? <Authentication /> : <div>Url not found</div>}
-    </div>
-  );
-
   return (
     <html lang="en" data-theme="pastel">
       <head>
@@ -71,7 +60,9 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
         <Links />
       </head>
       <body className="prose">
-        {renderElement}
+        <Authentication>
+          <PrivateLayout>{children}</PrivateLayout>
+        </Authentication>
         <ScrollRestoration />
         <Scripts />
       </body>
