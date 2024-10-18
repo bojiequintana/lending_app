@@ -18,10 +18,18 @@ First, build your app for production:
 pnpm run build
 ```
 
-Then run the app in production mode:
+Then run the app
+
+Production mode
 
 ```sh
 pnpm start
+```
+
+Development mode
+
+```sh
+pnpm dev
 ```
 
 Now you'll need to pick a host to deploy it to.
