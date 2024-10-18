@@ -1,4 +1,4 @@
-import { json, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import Breadcrumbs from "~/components/ui/Breadcrumbs";
 import Button from "~/components/ui/Button";
 import Icon from "~/components/ui/Icon";
@@ -8,11 +8,12 @@ import { getUsers } from "~/data-access/userRepository";
 import { UserEntity } from "~/entities/UserEntity";
 
 export async function loader() {
-  return json(await getUsers());
+  return await getUsers();
 }
 
 function UsersPage() {
   const users = useLoaderData<UserEntity[]>();
+  console.log("🚀 ~ UsersPage ~ users:", users);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex w-full justify-between items-center">
@@ -33,7 +34,8 @@ function UsersPage() {
         <div className=" hidden sm:block">
           <Table
             columns={[
-              { label: "Name", value: "name" },
+              { label: "Email", value: "email" },
+              { label: "Created at", value: "created_at" },
               {
                 label: "",
                 value: "",
@@ -47,8 +49,24 @@ function UsersPage() {
               },
             ]}
             dataSource={[
-              { id: 1, age: "18", name: "Bojie" },
-              { id: 2, age: "18", name: "Bojie" },
+              {
+                id: 1,
+                age: "18",
+                email: "bojie.quintana@98labs.com",
+                created_at: "10/18/2024",
+              },
+              {
+                id: 2,
+                age: "18",
+                email: "admin@admin.com",
+                created_at: "10/18/2024",
+              },
+              {
+                id: 3,
+                age: "18",
+                email: "admin2@admin.com",
+                created_at: "10/18/2024",
+              },
             ]}
           />
         </div>

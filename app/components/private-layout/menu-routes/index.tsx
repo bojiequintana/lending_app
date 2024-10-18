@@ -8,7 +8,7 @@ const MenuRoutes = () => {
       <li>
         <Link
           to="/"
-          className={`no-underline flex gap-5  text-primary-content focus:text-primary-content  ${
+          className={`no-underline flex gap-5    ${
             pathname === "/" && "font-bold"
           }`}
         >
@@ -19,7 +19,7 @@ const MenuRoutes = () => {
       <li>
         <Link
           to="/users-page"
-          className={`no-underline flex gap-5 text-primary-content focus:text-primary-content  ${
+          className={`no-underline flex gap-5   ${
             pathname === "/users-page" && "font-bold"
           }`}
         >
@@ -30,7 +30,7 @@ const MenuRoutes = () => {
       <li>
         <Link
           to="/creditsss"
-          className={`no-underline flex gap-5 text-primary-content focus:text-primary-content  ${
+          className={`no-underline flex gap-5   ${
             pathname === "/credits" && "font-bold"
           }`}
         >

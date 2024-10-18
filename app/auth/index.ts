@@ -19,18 +19,14 @@ export const login = async (body: FormData): Promise<Response> => {
   const fieldErrors: FormErrors = {};
   if (!email) {
     fieldErrors.email = "This field is required";
-  } else {
-    if (!email.includes("@")) {
-      fieldErrors.email = "Invalid email address";
-    }
+  } else if (!email.includes("@")) {
+    fieldErrors.email = "Invalid email address";
   }
 
   if (!password) {
     fieldErrors.password = "This field is required";
-  } else {
-    if (password.length < 6) {
-      fieldErrors.password = "Password should be at least 6 characters";
-    }
+  } else if (password.length < 6) {
+    fieldErrors.password = "Password should be at least 6 characters";
   }
 
   if (Object.keys(fieldErrors).length > 0) {

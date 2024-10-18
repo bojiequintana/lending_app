@@ -34,7 +34,7 @@ const InputIcon = React.forwardRef<HTMLInputElement, IProps>(
       <label className="form-control w-full relative z-0">
         <label className={cn(inputVariants({ variant, shape, className }))}>
           {props.icon}
-          <input onChange={onChange} ref={ref} {...props} />
+          <input onChange={onChange} ref={ref} {...props} className="w-full" />
         </label>
 
         {props.errormessage && (

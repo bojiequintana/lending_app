@@ -4,7 +4,7 @@ import Icon from "~/components/ui/Icon";
 
 const Appbar = () => {
   return (
-    <div className="navbar bg-base-100 border-b">
+    <div className="navbar shadow-sm bg-base-100">
       <div className="navbar-start sm:hidden">
         <NavBurger />
         <div className="sm:hidden font-bold">Lending App</div>

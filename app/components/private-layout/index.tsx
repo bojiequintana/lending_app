@@ -14,7 +14,7 @@ const PrivateLayout = ({
         <div className="sticky top-0">
           <Appbar />
         </div>
-        <div className="px-2 sm:px-10 h-dvh py-5 bg-base-300/30">
+        <div className="px-2 sm:px-10 h-dvh py-5 bg-base-300/50">
           {children}
         </div>
         <div className="sticky bottom-0 navbar p-0 flex items-end sm:hidden">

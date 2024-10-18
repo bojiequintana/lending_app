@@ -4,6 +4,15 @@ export default {
   content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
-    themes: ["sunset", "luxury", "pastel", "cupcake", "fantasy", "autumn"],
+    themes: [
+      "sunset",
+      "luxury",
+      "pastel",
+      "cupcake",
+      "fantasy",
+      "autumn",
+      "night",
+      "lemonade",
+    ],
   },
 } satisfies Config;

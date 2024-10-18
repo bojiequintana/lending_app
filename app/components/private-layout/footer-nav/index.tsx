@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 
 const FooterNav = () => {
   return (
-    <ul className="menu menu-horizontal bg-base-200 w-full justify-evenly m-0 ">
+    <ul className="menu menu-horizontal w-full justify-evenly m-0 bg-base-100">
       <Link
         to="/"
         className="flex flex-col justify-center items-center gap-0 no-underline"
