@@ -1,9 +1,7 @@
 import {
-  json,
   Links,
   Meta,
   Outlet,
-  redirect,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
@@ -45,14 +43,14 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const token = await sessionCookie.parse(cookieHeader);
   if (!token) {
-    return json({ isAuthenticated: false });
+    return { isAuthenticated: false };
   }
-  return json({ isAuthenticated: true, token });
+  return { isAuthenticated: true, token };
 };
 
 export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-theme="pastel">
+    <html lang="en" data-theme="cupcake">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -1,0 +1,45 @@
+import { Link, useLocation } from "@remix-run/react";
+import Icon from "~/components/ui/Icon";
+
+const MenuRoutes = () => {
+  const { pathname } = useLocation();
+  return (
+    <>
+      <li>
+        <Link
+          to="/"
+          className={`no-underline flex gap-5  text-primary-content focus:text-primary-content  ${
+            pathname === "/" && "font-bold"
+          }`}
+        >
+          <Icon name="home" />
+          <span>Dashboard</span>
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/users-page"
+          className={`no-underline flex gap-5 text-primary-content focus:text-primary-content  ${
+            pathname === "/users-page" && "font-bold"
+          }`}
+        >
+          <Icon name="info" />
+          <span>Users</span>
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/creditsss"
+          className={`no-underline flex gap-5 text-primary-content focus:text-primary-content  ${
+            pathname === "/credits" && "font-bold"
+          }`}
+        >
+          <Icon name="signal" />
+          <span>Credits</span>
+        </Link>
+      </li>
+    </>
+  );
+};
+
+export default MenuRoutes;

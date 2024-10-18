@@ -2,6 +2,7 @@ import { UserDTO, UserEntity } from "~/entities/UserEntity";
 import dataSource from "~/datasource";
 
 const users = dataSource<UserEntity>("users");
+
 export const getUsers = async () => {
   return (await users).read();
 };

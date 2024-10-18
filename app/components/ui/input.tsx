@@ -5,9 +5,10 @@ import React from "react";
 const inputVariants = cva("input w-full", {
   variants: {
     variant: {
-      default: "border border-primary",
+      default: "",
       ghost: "",
       error: "border-error focus:border-error",
+      bordered: "input-bordered",
     },
     shape: {
       default: "",

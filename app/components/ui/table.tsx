@@ -1,29 +1,44 @@
-const Table = () => {
+import { ReactNode } from "react";
+
+interface IColumnFieldName {
+  id: string | number;
+}
+
+interface IColumns {
+  label: string;
+  value: string;
+  render?: null | ((id: string | number) => ReactNode | string);
+}
+interface IDataSource extends IColumnFieldName {
+  [key: string]: string | number | boolean;
+}
+
+interface IProps {
+  columns: IColumns[];
+  dataSource: IDataSource[];
+}
+const Table = ({ columns, dataSource }: IProps) => {
   return (
-    <table className="table-fixed">
+    <table className="table">
       <thead>
         <tr>
-          <th>Song</th>
-          <th>Artist</th>
-          <th>Year</th>
+          {columns.map(({ label, value }) => (
+            <th key={value}>{label}</th>
+          ))}
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-          <td>Malcolm Lockyer</td>
-          <td>1961</td>
-        </tr>
-        <tr>
-          <td>Witchy Woman</td>
-          <td>The Eagles</td>
-          <td>1972</td>
-        </tr>
-        <tr>
-          <td>Shining Star</td>
-          <td>Earth, Wind, and Fire</td>
-          <td>1975</td>
-        </tr>
+        {dataSource.map((data) => {
+          return (
+            <tr key={data.id}>
+              {columns.map((column) => (
+                <td key={`${column.value}`}>
+                  {column.render ? column.render(data.id) : data[column.value]}
+                </td>
+              ))}
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
