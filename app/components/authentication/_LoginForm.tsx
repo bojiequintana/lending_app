@@ -2,25 +2,25 @@ import { Form } from "@remix-run/react";
 import Button from "../ui/Button";
 import google from "public/google.png";
 import useActionState from "~/hooks/useActionState";
-import { displayErrorMessagesByErrorState } from "~/utils/displayErrorMessagesByErrorState";
 import Loading from "../ui/Loading";
 import Alert from "../ui/Alert";
 import InputIcon from "../ui/InputIcon";
 import Icon from "../ui/Icon";
 
+interface ILoginForm {
+  [key: string]: string;
+  email: string;
+  password: string;
+}
 const LoginForm = () => {
   const {
     actionData,
     isLoading,
     setIsLoading,
-    fieldErrorsState,
+    fieldErrorMessages,
     turnOffErrorIndicator,
-  } = useActionState();
+  } = useActionState<ILoginForm>();
 
-  const fields = displayErrorMessagesByErrorState({
-    fieldErrors: actionData?.fieldErrors,
-    fieldErrorsState,
-  });
   return (
     <Form
       method="post"
@@ -32,8 +32,8 @@ const LoginForm = () => {
       <InputIcon
         placeholder="Email"
         name="email"
-        variant={fields.email ? "error" : "default"}
-        errormessage={fields.email}
+        variant={fieldErrorMessages.em ? "error" : "default"}
+        errormessage={fieldErrorMessages.email}
         onChange={() => turnOffErrorIndicator("email")}
         icon={<Icon name="email" />}
         className="bg-base-300 sm:bg-base-100"
@@ -42,8 +42,8 @@ const LoginForm = () => {
         placeholder="Password"
         name="password"
         type="password"
-        variant={fields.password ? "error" : "default"}
-        errormessage={fields.password}
+        variant={fieldErrorMessages.password ? "error" : "default"}
+        errormessage={fieldErrorMessages.password}
         onChange={() => turnOffErrorIndicator("password")}
         icon={<Icon name="password" />}
         className="bg-base-300 sm:bg-base-100"

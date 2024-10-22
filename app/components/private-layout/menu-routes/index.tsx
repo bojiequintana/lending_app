@@ -18,7 +18,7 @@ const MenuRoutes = () => {
       </li>
       <li>
         <Link
-          to="/users-page"
+          to="/users"
           className={`no-underline flex gap-5   ${
             pathname === "/users-page" && "font-bold"
           }`}

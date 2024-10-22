@@ -1,5 +1,6 @@
 import { useActionData } from "@remix-run/react";
 import { useEffect, useState } from "react";
+import { displayErrorMessagesByErrorState } from "~/utils/displayErrorMessagesByErrorState";
 
 interface IActionResponse {
   fieldErrors?: { [key: string]: string };
@@ -7,7 +8,7 @@ interface IActionResponse {
   status?: number;
   data?: unknown[];
 }
-export default function useActionState() {
+export default function useActionState<T extends { [key: string]: string }>() {
   const actionData = useActionData<Promise<IActionResponse>>();
   const [fieldErrorsState, setFieldErrorsState] = useState<{
     [key: string]: boolean;
@@ -33,11 +34,17 @@ export default function useActionState() {
     }
   };
 
+  const fieldErrorMessages = displayErrorMessagesByErrorState({
+    fieldErrors: actionData?.fieldErrors,
+    fieldErrorsState,
+  });
+
   return {
     actionData,
     isLoading,
     setIsLoading,
     fieldErrorsState,
+    fieldErrorMessages: { ...fieldErrorMessages } as T,
     turnOffErrorIndicator,
   };
 }

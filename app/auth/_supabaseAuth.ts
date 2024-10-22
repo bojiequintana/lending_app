@@ -7,10 +7,12 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const supabaseAuth = <T>(): IAuthBaseOperations<T> => {
   const signUp = async (params: IAuthParams): Promise<T> => {
-    return (await supabase.auth.signUp({
+    const result = (await supabase.auth.signUp({
       email: params.email,
       password: params.password,
     })) as T;
+    console.log("🚀 ~ signUp ~ result:", result);
+    return result;
   };
 
   const signIn = async (params: IAuthParams): Promise<T> => {

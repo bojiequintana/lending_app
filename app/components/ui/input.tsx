@@ -5,7 +5,7 @@ import React from "react";
 const inputVariants = cva("input w-full", {
   variants: {
     variant: {
-      default: "",
+      default: "bg-base-300/40",
       ghost: "",
       error: "border-error focus:border-error",
       bordered: "input-bordered",

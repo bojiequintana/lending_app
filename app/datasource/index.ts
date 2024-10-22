@@ -4,7 +4,8 @@ import { TCollectionName } from "./types/TCollectionNames";
 import { IDefaultFields } from "./types/IDefaultFields";
 
 export default async function dataSource<T extends IDefaultFields>(
-  collectionName: TCollectionName
+  collectionName: TCollectionName,
+  tableReferences: string[] = []
 ): Promise<IBaseOperations<T>> {
-  return supabaseClient<T>(collectionName);
+  return supabaseClient<T>(collectionName, tableReferences);
 }
