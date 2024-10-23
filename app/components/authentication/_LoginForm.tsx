@@ -61,7 +61,7 @@ const LoginForm = () => {
           <img src={google} alt="googleLogo" className="w-6 absolute" />
         </Button>
       </div>
-      {actionData?.error && <Alert>Unauthorized user!</Alert>}
+      {actionData?.error && <Alert>{actionData?.error ?? ""}</Alert>}
     </Form>
   );
 };

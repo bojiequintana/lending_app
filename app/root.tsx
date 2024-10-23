@@ -14,7 +14,7 @@ import type {
 import "./tailwind.css";
 import Authentication from "./components/authentication";
 import PrivateLayout from "./components/private-layout";
-import { sessionCookie } from "./auth/_httpOnlyCookie";
+import { verifySessionCookie } from "./auth/_httpOnlyCookie";
 import auth from "./auth";
 
 export const links: LinksFunction = () => [
@@ -41,12 +41,7 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const cookieHeader = request.headers.get("Cookie");
-  const token = await sessionCookie.parse(cookieHeader);
-  if (!token) {
-    return { isAuthenticated: false };
-  }
-  return { isAuthenticated: true, token };
+  return await verifySessionCookie(request);
 };
 
 export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {

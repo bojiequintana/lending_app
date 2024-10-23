@@ -1,4 +1,8 @@
-import { AuthResponse, createClient } from "@supabase/supabase-js";
+import {
+  AuthApiError,
+  AuthResponse,
+  createClient,
+} from "@supabase/supabase-js";
 import {
   IAuthBaseOperations,
   IDataResponseAction,
@@ -29,21 +33,54 @@ const createBaseOperationResponse = (
   };
 };
 
-export const keycloakAuth = (): IAuthBaseOperations => {
+export const supabaseEmailAuth = (): IAuthBaseOperations => {
   return {
     signIn: async (params) => {
-      const data = await supabase.auth.signInWithPassword({
+      const authResponse = await supabase.auth.signInWithPassword({
         email: params.email,
         password: params.password,
       });
-      return json(createBaseOperationResponse(data));
+
+      const { session, error } = createBaseOperationResponse(authResponse);
+      if (error) {
+        const err = error as AuthApiError;
+        return json(
+          { error: err.message, status: err.status, code: err.code },
+          { status: err.status }
+        );
+      }
+
+      if (session?.access_token) {
+        const serializeResult = await sessionCookieSerialize(session);
+        return redirect("/", { headers: { "Set-Cookie": serializeResult } });
+      }
+
+      return json(
+        { error: "Ooops something went wrong", status: 401 },
+        { status: 401 }
+      );
     },
     signUp: async (params) => {
-      const data = await supabase.auth.signUp({
+      const authResponse = await supabase.auth.signUp({
         email: params.email,
         password: params.password,
       });
-      return json(createBaseOperationResponse(data));
+
+      if (authResponse.error) {
+        const err = authResponse.error as AuthApiError;
+        return json(
+          { error: err.message, status: err.status, code: err.code },
+          { status: err.status }
+        );
+      }
+
+      if (authResponse) {
+        return redirect("/users");
+      }
+      return json(
+        { error: "Authentication failed", status: 401 },
+        { status: 401 }
+      );
     },
     signOut: async () => {
       await supabase.auth.signOut();

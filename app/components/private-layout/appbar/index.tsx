@@ -1,8 +1,11 @@
 import LogoutButton from "~/components/logout-button";
 import NavBurger from "./_NavBurger";
 import Icon from "~/components/ui/Icon";
+import { useLoaderData } from "@remix-run/react";
+import { loader } from "~/root";
 
 const Appbar = () => {
+  const data = useLoaderData<typeof loader>();
   return (
     <div className="navbar shadow-sm bg-base-100">
       <div className="navbar-start sm:hidden">
@@ -18,7 +21,7 @@ const Appbar = () => {
       <div className="flex-none gap-2 hidden sm:block">
         <div className="dropdown dropdown-end">
           <div className="flex items-center gap-3">
-            <div className="font-bold">Admin</div>
+            <div className="font-bold">{data?.email}</div>
             <div
               tabIndex={0}
               role="button"

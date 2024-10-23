@@ -20,7 +20,7 @@ const MenuRoutes = () => {
         <Link
           to="/users"
           className={`no-underline flex gap-5   ${
-            pathname === "/users-page" && "font-bold"
+            pathname === "/users" && "font-bold"
           }`}
         >
           <Icon name="info" />
