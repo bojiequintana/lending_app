@@ -32,7 +32,7 @@ const LoginForm = () => {
       <InputIcon
         placeholder="Email"
         name="email"
-        variant={fieldErrorMessages.em ? "error" : "default"}
+        variant={fieldErrorMessages.email ? "error" : "default"}
         errormessage={fieldErrorMessages.email}
         onChange={() => turnOffErrorIndicator("email")}
         icon={<Icon name="email" />}

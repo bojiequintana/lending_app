@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { IAuthParams, IAuthBaseOperations } from "./_IAuthBaseOperation";
+import { IAuthParams, IAuthBaseOperations } from "./types/_IAuthBaseOperation";
 
 const supabaseUrl = process.env.SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_KEY!;
@@ -11,7 +11,6 @@ export const supabaseAuth = <T>(): IAuthBaseOperations<T> => {
       email: params.email,
       password: params.password,
     })) as T;
-    console.log("🚀 ~ signUp ~ result:", result);
     return result;
   };
 

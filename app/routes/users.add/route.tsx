@@ -68,7 +68,7 @@ const Add = () => {
               }))}
             />
             <Button onClick={() => setIsLoading(true)} type="submit">
-              {isLoading ? <Loading /> : "Login"}
+              {isLoading ? <Loading /> : "Save"}
             </Button>
           </Form>
           {actionData?.error && <Alert>Oops something went wrong!</Alert>}

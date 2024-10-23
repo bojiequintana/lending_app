@@ -15,7 +15,7 @@ import "./tailwind.css";
 import Authentication from "./components/authentication";
 import PrivateLayout from "./components/private-layout";
 import { sessionCookie } from "./auth/_httpOnlyCookie";
-import { login, logout } from "./auth";
+import auth from "./auth";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,9 +32,10 @@ export const links: LinksFunction = () => [
 
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.formData();
+  const { login, logout } = await auth();
   const actionType = body.get("actionType") as string;
   if (actionType === "login") return login(body);
-  if (actionType === "logout") return logout();
+  if (actionType === "logout") return logout(body);
   // If actionType is not recognized
   return new Response("Action not supported", { status: 400 });
 }
