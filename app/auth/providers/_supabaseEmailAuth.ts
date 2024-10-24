@@ -36,6 +36,9 @@ const createBaseOperationResponse = (
 export const supabaseEmailAuth = (): IAuthBaseOperations => {
   return {
     signIn: async (params) => {
+      if (!params) {
+        return json({ error: "No parameters" }, { status: 401 });
+      }
       const authResponse = await supabase.auth.signInWithPassword({
         email: params.email,
         password: params.password,
@@ -61,6 +64,9 @@ export const supabaseEmailAuth = (): IAuthBaseOperations => {
       );
     },
     signUp: async (params) => {
+      if (!params) {
+        return json({ error: "No parameters" }, { status: 401 });
+      }
       const authResponse = await supabase.auth.signUp({
         email: params.email,
         password: params.password,

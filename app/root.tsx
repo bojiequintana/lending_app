@@ -14,9 +14,8 @@ import type {
 import "./tailwind.css";
 import Authentication from "./components/authentication";
 import PrivateLayout from "./components/private-layout";
+import { authWithEmailPassword, authWithThirdParty } from "./auth";
 import { verifySessionCookie } from "./auth/_httpOnlyCookie";
-import auth from "./auth";
-
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -32,10 +31,12 @@ export const links: LinksFunction = () => [
 
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.formData();
-  const { login, logout } = await auth();
+  const { login, logout } = await authWithEmailPassword();
+  const keycloakAuth = await authWithThirdParty("keycloak");
   const actionType = body.get("actionType") as string;
   if (actionType === "login") return login(body);
   if (actionType === "logout") return logout(body);
+  if (actionType === "keycloakLogin") return keycloakAuth.login();
   // If actionType is not recognized
   return new Response("Action not supported", { status: 400 });
 }

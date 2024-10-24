@@ -24,6 +24,7 @@ export const sessionCookieSerialize = async (data?: unknown) => {
 export const verifySessionCookie = async (request: Request) => {
   const cookieHeader = request.headers.get("Cookie");
   const parseInfo = await sessionCookie.parse(cookieHeader);
+  console.log("🚀 ~ verifySessionCookie ~ parseInfo:", parseInfo);
   if (!parseInfo) return null;
   return {
     accessToken: parseInfo.access_token,

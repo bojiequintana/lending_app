@@ -15,7 +15,7 @@ export interface IAuthParams {
   password: string;
 }
 export interface IAuthBaseOperations {
-  signUp: (params: IAuthParams) => Promise<Response>;
-  signIn: (params: IAuthParams) => Promise<Response>;
+  signUp: (params?: IAuthParams) => Promise<Response>;
+  signIn: (params?: IAuthParams) => Promise<Response>;
   signOut: () => Promise<Response>;
 }
