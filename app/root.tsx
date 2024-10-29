@@ -1,21 +1,20 @@
 import {
+  json,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type {
-  ActionFunctionArgs,
-  LinksFunction,
-  LoaderFunctionArgs,
-} from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 
 import "./tailwind.css";
 import Authentication from "./components/authentication";
 import PrivateLayout from "./components/private-layout";
-import { authWithEmailPassword, authWithThirdParty } from "./auth";
-import { verifySessionCookie } from "./auth/_httpOnlyCookie";
+import {
+  getSupabaseEnv,
+  getSupabaseWithSessionAndHeaders,
+} from "./supabase.server";
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -29,20 +28,13 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export async function action({ request }: ActionFunctionArgs) {
-  const body = await request.formData();
-  const { login, logout } = await authWithEmailPassword();
-  const keycloakAuth = await authWithThirdParty("keycloak");
-  const actionType = body.get("actionType") as string;
-  if (actionType === "login") return login(body);
-  if (actionType === "logout") return logout(body);
-  if (actionType === "keycloakLogin") return keycloakAuth.login();
-  // If actionType is not recognized
-  return new Response("Action not supported", { status: 400 });
-}
-
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  return await verifySessionCookie(request);
+  const { serverSession, headers } = await getSupabaseWithSessionAndHeaders({
+    request,
+  });
+  const env = getSupabaseEnv();
+
+  return json({ serverSession, env }, { headers });
 };
 
 export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {

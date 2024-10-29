@@ -1,18 +1,23 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import Button from "../ui/Button";
-import google from "public/google.png";
+import keycloak from "public/keycloak.png";
 import { loader } from "~/root";
+import { useSupabaseClient } from "~/hooks/useSupabaseClient";
 
 const KeycloakForm = () => {
-  const data = useLoaderData<typeof loader>();
-  console.log("🚀 ~ KeycloakForm ~ data:", data);
+  const { env, serverSession } = useLoaderData<typeof loader>();
+  const { loginWithThirdParty } = useSupabaseClient({ env, serverSession });
   return (
-    <Form method="post" className="w-full">
-      <input type="hidden" name="actionType" value="keycloakLogin" />{" "}
-      <Button type="submit" variant="base100" className="relative px-8 w-full">
-        <img src={google} alt="googleLogo" className="w-6 absolute" />
+    <div className="w-full">
+      <Button
+        type="button"
+        variant="base100"
+        className="relative px-8 w-full"
+        onClick={async () => await loginWithThirdParty("keycloak")}
+      >
+        <img src={keycloak} alt="googleLogo" className="w-6 absolute" />
       </Button>
-    </Form>
+    </div>
   );
 };
 

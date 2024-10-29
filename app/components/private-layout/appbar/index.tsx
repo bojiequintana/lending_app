@@ -1,4 +1,4 @@
-import LogoutButton from "~/components/logout-button";
+import LogoutButton from "~/components/private-layout/logout-button";
 import NavBurger from "./_NavBurger";
 import Icon from "~/components/ui/Icon";
 import { useLoaderData } from "@remix-run/react";
@@ -21,7 +21,7 @@ const Appbar = () => {
       <div className="flex-none gap-2 hidden sm:block">
         <div className="dropdown dropdown-end">
           <div className="flex items-center gap-3">
-            <div className="font-bold">{data?.email}</div>
+            <div className="font-bold">{data?.serverSession?.user.email}</div>
             <div
               tabIndex={0}
               role="button"
