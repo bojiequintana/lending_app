@@ -8,7 +8,6 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
-import Authentication from "./components/authentication";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,8 +31,8 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body data-theme="pastel">
+        <main className="bg-base-300">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,12 +41,5 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
 }
 
 export default function App() {
-  const isAuthenticated = false;
-  return isAuthenticated ? (
-    <Outlet />
-  ) : (
-    <div className="flex h-screen items-center justify-center">
-      <Authentication />
-    </div>
-  );
+  return <Outlet />;
 }
