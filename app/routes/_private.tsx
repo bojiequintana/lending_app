@@ -12,7 +12,10 @@ export const meta: MetaFunction = () => {
 export async function loader({ request }: LoaderFunctionArgs) {
   const headers = request.headers;
   console.log("headers", headers.get("Cookie"));
-  return redirect("/login");
+  if (!headers.get("Cookie")) {
+    return redirect("/login");
+  }
+  return {};
 }
 const Private = () => {
   return (

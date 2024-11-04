@@ -1,4 +1,4 @@
-import { ActionFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { Form, redirect } from "@remix-run/react";
 import Button from "~/components/ui/Button";
 import Icon from "~/components/ui/Icon";
@@ -7,7 +7,16 @@ import InputIcon from "~/components/ui/InputIcon";
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.formData();
   console.log("body", body.get("email"));
-  return redirect(`/`);
+  return redirect("/");
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const headers = request.headers;
+  console.log("headers", headers.get("Cookie"));
+  if (headers.get("Cookie")) {
+    return redirect("/");
+  }
+  return {};
 }
 
 const Login = () => {
