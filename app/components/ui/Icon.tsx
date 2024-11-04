@@ -19,7 +19,7 @@ interface IProps {
     | "add";
 }
 const Icon = ({ name }: IProps) => {
-  if (name === "back") {
+  if (name === "back")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -34,8 +34,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "building") {
+
+  if (name === "building")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -51,8 +51,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "refresh") {
+
+  if (name === "refresh")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +67,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "message") {
+
+  if (name === "message")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -80,8 +80,8 @@ const Icon = ({ name }: IProps) => {
         <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
       </svg>
     );
-  }
-  if (name === "settings") {
+
+  if (name === "settings")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -96,8 +96,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "navigate") {
+
+  if (name === "navigate")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -114,8 +114,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "location") {
+
+  if (name === "location")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -137,8 +137,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "add") {
+
+  if (name === "add")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -155,8 +155,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "email") {
+
+  if (name === "email")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -168,9 +168,8 @@ const Icon = ({ name }: IProps) => {
         <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
       </svg>
     );
-  }
 
-  if (name === "password") {
+  if (name === "password")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -185,9 +184,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
 
-  if (name === "search") {
+  if (name === "search")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -202,9 +200,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
 
-  if (name === "edit") {
+  if (name === "edit")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -215,9 +212,8 @@ const Icon = ({ name }: IProps) => {
         <path d="M12.146 0.146a1.5 1.5 0 0 1 2.121 0l1.5 1.5a1.5 1.5 0 0 1 0 2.121L4.74 13.518a1 1 0 0 1-.373.232l-2.25.562a1 1 0 0 1-1.215-1.215l.563-2.25a1 1 0 0 1 .232-.373L12.146.146zM11.623 2.5L3.5 10.623 2.934 12.034l1.411-.566L13.5 3.5 11.623 2.5z" />
       </svg>
     );
-  }
 
-  if (name === "signal") {
+  if (name === "signal")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -234,9 +230,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
 
-  if (name === "info") {
+  if (name === "info")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -253,8 +248,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "user") {
+
+  if (name === "user")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -271,9 +266,8 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
 
-  if (name === "home") {
+  if (name === "home")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -288,8 +282,7 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
-  if (name === "notification") {
+  if (name === "notification")
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -306,7 +299,6 @@ const Icon = ({ name }: IProps) => {
         />
       </svg>
     );
-  }
   return <div>Icon</div>;
 };
 
