@@ -16,9 +16,28 @@ interface IProps {
     | "refresh"
     | "building"
     | "back"
+    | "logout"
     | "add";
 }
 const Icon = ({ name }: IProps) => {
+  if (name === "logout") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="h-4 w-4"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
+        />
+      </svg>
+    );
+  }
   if (name === "back")
     return (
       <svg
@@ -253,16 +272,16 @@ const Icon = ({ name }: IProps) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
         fill="none"
         viewBox="0 0 24 24"
+        strokeWidth="1.5"
         stroke="currentColor"
+        className="h-8 w-8"
       >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth="2"
-          d="M12 14c4.418 0 8-3.582 8-8S16.418 0 12 0 4 3.582 4 8s3.582 8 8 8zM12 14c-4.418 0-8 3.582-8 8v2h16v-2c0-4.418-3.582-8-8-8z"
+          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
         />
       </svg>
     );

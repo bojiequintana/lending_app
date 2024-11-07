@@ -3,17 +3,15 @@ import { Form, redirect } from "@remix-run/react";
 import Button from "~/components/ui/Button";
 import Icon from "~/components/ui/Icon";
 import InputIcon from "~/components/ui/InputIcon";
+import { authenticator } from "~/utils/auth/auth.server";
 
 export async function action({ request }: ActionFunctionArgs) {
-  const body = await request.formData();
-  console.log("body", body.get("email"));
-  return redirect("/");
+  return authenticator.authenticate("keycloak", request);
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const headers = request.headers;
-  console.log("headers", headers.get("Cookie"));
-  if (headers.get("Cookie")) {
+  const user = await authenticator.isAuthenticated(request);
+  if (user) {
     return redirect("/");
   }
   return {};
