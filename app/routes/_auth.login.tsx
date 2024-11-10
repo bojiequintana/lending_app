@@ -36,7 +36,14 @@ const Login = () => {
           type="password"
           name="password"
         />
-        <Button type="submit" label="Login with Keycloak" className="w-full" />
+        <Button type="button" label="Login" className="w-full" />
+        <span>or</span>
+        <Button
+          type="submit"
+          label="Login with Keycloak"
+          className="w-full"
+          variant={"grey"}
+        />
       </Form>
     </div>
   );
