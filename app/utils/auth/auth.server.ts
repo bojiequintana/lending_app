@@ -14,7 +14,7 @@ interface User {
 export const authenticator = new Authenticator<User>(sessionStorage);
 const keycloakStrategy = new KeycloakStrategy(
   {
-    useSSL: true,
+    useSSL: false,
     domain: process.env.KEYCLOAK_DOMAIN!,
     realm: process.env.KEYCLOAK_REALM!,
     clientID: process.env.KEYCLOAK_CLIENT_ID!,
