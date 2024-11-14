@@ -39,6 +39,7 @@ interface IProps
   label?: string;
   isOutline?: boolean;
   isWide?: boolean;
+  isGlass?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, IProps>(
@@ -51,6 +52,7 @@ const Button = React.forwardRef<HTMLButtonElement, IProps>(
       shape,
       isOutline = false,
       isWide = false,
+      isGlass = false,
       ...props
     },
     ref
@@ -61,7 +63,8 @@ const Button = React.forwardRef<HTMLButtonElement, IProps>(
         className={cn(
           buttonVariants({ variant, size, shape, className }),
           isOutline && "btn-outline",
-          isWide && "btn-wide"
+          isWide && "btn-wide",
+          isGlass && "glass"
         )}
         ref={ref}
         {...props}

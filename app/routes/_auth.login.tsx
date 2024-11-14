@@ -1,49 +1,30 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { Form, redirect } from "@remix-run/react";
 import Button from "~/components/ui/Button";
-import Icon from "~/components/ui/Icon";
-import InputIcon from "~/components/ui/InputIcon";
 import { authenticator } from "~/utils/auth/auth.server";
+import { loader as userLoader } from "~/root";
 
 export async function action({ request }: ActionFunctionArgs) {
   return authenticator.authenticate("keycloak", request);
 }
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const user = await authenticator.isAuthenticated(request);
+export async function loader(loaderFunc: LoaderFunctionArgs) {
+  const user = await userLoader(loaderFunc);
   if (user) {
     return redirect("/");
   }
-  return {};
+  return user;
 }
 
 const Login = () => {
   return (
-    <div className="w-full h-dvh flex justify-center items-center">
+    <div className="w-full h-dvh flex justify-center items-center bg-base-200">
       <Form
         method="post"
-        className="prose rounded-badge max-w-lg w-full bg-base-100 flex justify-center items-center flex-col gap-8 p-10 "
+        className="prose rounded-badge max-w-lg w-full bg-base-100 flex justify-center items-center flex-col gap-8 p-10 shadow-xl"
       >
         <h1>Lending App</h1>
-        <InputIcon
-          icon={<Icon name="email" />}
-          placeholder="Email"
-          name="email"
-        />
-        <InputIcon
-          icon={<Icon name="password" />}
-          placeholder="Password"
-          type="password"
-          name="password"
-        />
-        <Button type="button" label="Login" className="w-full" />
-        <span>or</span>
-        <Button
-          type="submit"
-          label="Login with Keycloak"
-          className="w-full"
-          variant={"grey"}
-        />
+        <Button type="submit" label="Login with Keycloak" className="w-full" />
       </Form>
     </div>
   );

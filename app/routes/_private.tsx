@@ -1,7 +1,8 @@
 import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Outlet, redirect } from "@remix-run/react";
 import PrivateLayout from "~/components/private-layout";
-import { authenticator, handleAuthExpiration } from "~/utils/auth/auth.server";
+import { loader as userLoader } from "~/root";
+import { handleRefreshTokenExpiration } from "~/utils/auth/middleware.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,13 +11,20 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const authResponse = await authenticator.isAuthenticated(request);
-  if (!authResponse) {
-    return redirect("/login");
+export async function loader(loaderFunc: LoaderFunctionArgs) {
+  const { request } = loaderFunc;
+  const user = await userLoader(loaderFunc);
+  if (!user) {
+    try {
+      if (await handleRefreshTokenExpiration(request)) {
+        return redirect("/logout");
+      }
+      return redirect("/login");
+    } catch (e) {
+      return redirect("/login");
+    }
   }
-  const userPayload = await handleAuthExpiration(authResponse);
-  return userPayload;
+  return user;
 }
 
 const Private = () => {
