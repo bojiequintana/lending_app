@@ -1,0 +1,129 @@
+{
+  "type": "Group",
+  "label": "Personal Info",
+  "elements": [
+    {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/personalIdentification/properties/firstName",
+              "label": "First name"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/personalIdentification/properties/middleName",
+              "label": "Middle name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/lastName",
+          "label": "Last name"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/suffix",
+          "label": "Suffix"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/dateOfBirth",
+          "label": "Date of birth"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/age",
+          "label": "Age"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/gender",
+          "label": "Gender"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/contactNumber",
+          "label": "Landline number"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/education",
+          "label": "Level of education"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/religion",
+          "label": "Religion"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Label",
+          "label": false
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/nationality",
+          "label": "Nationality"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/maritalStatus",
+          "label": "Marital status"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/spouseFirstName",
+          "label": "Spouse firstname"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Label",
+          "label": false
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalIdentification/properties/spouseLastName",
+          "label": "Spouse lastname"
+        }
+      ]
+    }
+  ]
+}

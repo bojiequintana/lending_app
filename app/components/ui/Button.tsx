@@ -24,6 +24,7 @@ const buttonVariants = cva("btn", {
       default: "",
       rounded: "btn-rounded",
       circle: "btn-circle",
+      outline: "btn-outline",
     },
   },
   defaultVariants: {

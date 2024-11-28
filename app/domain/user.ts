@@ -16,6 +16,6 @@ export const createUserDTO = (userPayload: JwtPayload): UserEntity => {
     name: userPayload.name,
     email: userPayload.email,
     email_verified: userPayload.email_verified,
-    ...userPayload?.resource_access["lending-app-core"], //roles
+    ...userPayload?.realm_access, //roles
   };
 };

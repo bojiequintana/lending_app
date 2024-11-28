@@ -1,0 +1,65 @@
+{
+  "type": "Group",
+  "label": "Residential Address",
+  "elements": [
+    {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/residentialAddress/properties/blockNumber"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/residentialAddress/properties/lotNumber"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/residentialAddress/properties/country",
+              "options": { "placeholder": "Enter your country" }
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/residentialAddress/properties/province"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/residentialAddress/properties/barangay",
+              "label": "Barangay"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/residentialAddress/properties/street"
+            }
+          ]
+        },
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Label",
+              "label": ""
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/residentialAddress/properties/zipCode"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

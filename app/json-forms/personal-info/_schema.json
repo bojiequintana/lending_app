@@ -1,0 +1,143 @@
+{
+  "type": "object",
+  "title": "Personal Identification Form",
+  "required": ["personalIdentification"],
+  "properties": {
+    "personalIdentification": {
+      "title": "Personal Information",
+      "type": "object",
+      "required": [
+        "lastName",
+        "firstName",
+        "contactNumber",
+        "dateOfBirth",
+        "age",
+        "gender",
+        "religion",
+        "education",
+        "maritalStatus",
+        "nationality"
+      ],
+      "if": {
+        "properties": {
+          "maritalStatus": {
+            "enum": ["Single", "Widowed"]
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "anyOf": [
+            {
+              "required": ["spouseLastName"]
+            },
+            {
+              "required": ["spouseFirstName"]
+            }
+          ]
+        }
+      },
+      "else": {
+        "required": ["spouseLastName", "spouseFirstName"]
+      },
+      "additionalProperties": false,
+      "properties": {
+        "lastName": {
+          "type": "string",
+          "title": "Last Name",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "firstName": {
+          "type": "string",
+          "title": "First Name",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "middleName": {
+          "type": "string",
+          "title": "Middle Name",
+          "maxLength": 100,
+          "nullable": true
+        },
+        "suffix": {
+          "type": "string",
+          "title": "Suffix",
+          "enum": ["Jr.", "Sr.", "III", "IV", "V"],
+          "nullable": true,
+          "description": "Optional name suffix (e.g., Jr., Sr., III)."
+        },
+        "contactNumber": {
+          "type": "string",
+          "title": "Contact Number",
+          "pattern": "^(\\+63|0)9[0-9]{9}$",
+          "description": "Philippine mobile number starting with +639 or 09."
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "title": "Date of Birth",
+          "format": "date"
+        },
+        "age": {
+          "type": "integer",
+          "title": "Age",
+          "minimum": 0
+        },
+        "gender": {
+          "type": "string",
+          "title": "Gender",
+          "enum": ["Male", "Female", "Other"]
+        },
+        "religion": {
+          "type": "string",
+          "title": "Religion",
+          "enum": ["Catholic", "Christian", "Islam", "Buddhist", "Others"]
+        },
+        "education": {
+          "type": "string",
+          "title": "Level of Education",
+          "enum": [
+            "Elementary",
+            "High School",
+            "Vocational",
+            "College",
+            "Postgraduate"
+          ]
+        },
+        "maritalStatus": {
+          "type": "string",
+          "title": "Marital Status",
+          "enum": ["Single", "Married", "Separated", "Annulled", "Widowed"]
+        },
+        "spouseLastName": {
+          "type": "string",
+          "title": "Spouse Last Name",
+          "maxLength": 100
+        },
+        "spouseFirstName": {
+          "type": "string",
+          "title": "Spouse First Name",
+          "maxLength": 100
+        },
+        "spouseMiddleName": {
+          "type": "string",
+          "title": "Spouse Middle Name",
+          "maxLength": 100,
+          "nullable": true
+        },
+        "nationality": {
+          "type": "string",
+          "title": "Nationality",
+          "enum": ["Filipino", "Foreign"]
+        },
+        "landline": {
+          "type": "string",
+          "title": "Landline Number",
+          "pattern": "^[0-9]{7,10}$",
+          "description": "Optional landline number (7 to 10 digits).",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,12 @@
-import { useOutletContext } from "@remix-run/react";
+import { useNavigate, useOutletContext } from "@remix-run/react";
 import MenuRoutes from "../menu-routes";
 import Settings from "../menu-routes/_Settings";
 import Icon from "~/components/ui/Icon";
 import { OutletContextType } from "~/types/OutletContextType";
 
 const Sidenav = () => {
+  const navigate = useNavigate();
   const { user } = useOutletContext<OutletContextType>();
-  console.log("🚀 ~ Sidenav ~ user:", user);
   return (
     <ul className="menu bg-base-100 h-dvh mt-0 w-64 gap-2">
       <li>
@@ -16,9 +16,14 @@ const Sidenav = () => {
         </div>
       </li>
       <MenuRoutes />
-      <Settings />
-      <div className="flex-1 flex items-end">
-        <li className="w-full">
+      <div className="flex-1 flex items-end w-full">
+        <div className="grid grid-cols-2 gap-3">
+          <Settings />
+          <button className="btn btn-sm" onClick={() => navigate("/logout")}>
+            <Icon name="logout" />
+          </button>
+        </div>
+        {/* <li className="w-full">
           <div className="relative no-underline flex items-center mb-3 mt-2 w-full">
             <Icon name="user" />
             <div className="flex flex-col">
@@ -26,7 +31,7 @@ const Sidenav = () => {
               <span className="text-xs">{user?.email ?? ""}</span>
             </div>
           </div>
-        </li>
+        </li> */}
       </div>
     </ul>
   );

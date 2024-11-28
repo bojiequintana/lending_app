@@ -12,11 +12,3 @@ export const sessionStorage = createCookieSessionStorage({
     secure: process.env.NODE_ENV === "production", // enable this in prod only
   },
 });
-
-export const verifySessionStorage = async (request: Request) => {
-  const cookieHeader = request.headers.get("Cookie");
-  const session = await sessionStorage.getSession(cookieHeader);
-  const user = session.get("user");
-  const authStateId = session.get("oauth2:state");
-  return { user, authStateId };
-};

@@ -12,19 +12,41 @@ const MenuRoutes = () => {
             pathname === "/" && "font-bold"
           }`}
         >
-          <Icon name="home" />
+          <Icon name="user" />
           <span>Dashboard</span>
         </Link>
       </li>
       <li>
         <Link
-          to="/messages"
+          to="/all-customers"
+          className={`no-underline flex gap-5    ${
+            pathname.includes("/all-customers") && "font-bold"
+          }`}
+        >
+          <Icon name="users" />
+          <span>All Customers</span>
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/for-verification"
           className={`no-underline flex gap-5   ${
-            pathname === "/messages" && "font-bold"
+            pathname.includes("/for-verification") && "font-bold"
+          }`}
+        >
+          <Icon name="edit" />
+          <span>For Verification</span>
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/update-required"
+          className={`no-underline flex gap-5   ${
+            pathname.includes("/update-required") && "font-bold"
           }`}
         >
           <Icon name="message" />
-          <span>Messages</span>
+          <span>Update required</span>
         </Link>
       </li>
     </>

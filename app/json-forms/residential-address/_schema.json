@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "title": "Residential Address",
+  "required": [
+    "country",
+    "province",
+    "cityMunicipality",
+    "barangay",
+    "street",
+    "blockNumber",
+    "lotNumber",
+    "zipCode"
+  ],
+  "properties": {
+    "country": {
+      "type": "string",
+      "enum": ["Philippines", "Japan", "Malaysia", "Thailand", "Singapore"]
+    },
+    "province": {
+      "type": "string"
+    },
+    "cityMunicipality": {
+      "type": "string"
+    },
+    "barangay": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "blockNumber": {
+      "type": "integer"
+    },
+    "lotNumber": {
+      "type": "integer"
+    },
+    "zipCode": {
+      "type": "integer"
+    }
+  }
+}
